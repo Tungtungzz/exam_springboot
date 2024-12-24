@@ -2,14 +2,16 @@ package com.example.player_evaluation.mapper;
 
 import com.example.player_evaluation.dto.req.PlayerReq;
 import com.example.player_evaluation.dto.res.PlayerRes;
+import com.example.player_evaluation.entity.Indexer;
 import com.example.player_evaluation.entity.Player;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper
+@Mapper(componentModel = "spring", uses = {IndexerMapper.class})
 public interface PlayerMapper {
-    PlayerMapper INSTANCE = Mappers.getMapper(PlayerMapper.class);
 
+    @Mapping(source = "indexId", target = "indexer.indexId")
     Player toEntity(PlayerReq req);
+
     PlayerRes toRes(Player player);
 }

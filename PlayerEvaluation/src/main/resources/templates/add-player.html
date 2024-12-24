@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Player</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h2>Add New Player</h2>
+<nav>
+    <ul>
+        <li><a href="/players" th:href="@{/players}">Back to Players</a></li>
+    </ul>
+</nav>
+<form th:action="@{/players}" th:object="${player}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required/>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" th:field="*{fullName}" required/>
+    <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Full Name Error</div>
+
+    <label for="age">Age:</label>
+    <input type="text" id="age" th:field="*{age}" required/>
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>
+
+    <label for="indexer">Indexer:</label>
+    <select id="indexer" th:field="*{indexId}" required>
+        <option value="" disabled selected>Select Indexer</option>
+        <option th:each="indexer : ${indexers}" th:value="${indexer.indexId}" th:text="${indexer.name}"></option>
+    </select>
+    <div th:if="${#fields.hasErrors('indexId')}" th:errors="*{indexId}">Indexer Error</div>
+
+    <button type="submit">Add Player</button>
+</form>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.example.player_evaluation.dto.res;
 
 public class PlayerRes {
+
     private Integer playerId;
     private String name;
     private String fullName;
@@ -8,6 +9,7 @@ public class PlayerRes {
     private IndexerRes indexer;
 
     // Getters and setters
+
     public Integer getPlayerId() {
         return playerId;
     }

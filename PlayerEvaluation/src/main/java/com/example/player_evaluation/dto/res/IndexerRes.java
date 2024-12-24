@@ -1,12 +1,14 @@
 package com.example.player_evaluation.dto.res;
 
 public class IndexerRes {
+
     private Integer indexId;
     private String name;
-    private float valueMin;
-    private float valueMax;
+    private Float valueMin;
+    private Float valueMax;
 
     // Getters and setters
+
     public Integer getIndexId() {
         return indexId;
     }
@@ -23,19 +25,19 @@ public class IndexerRes {
         this.name = name;
     }
 
-    public float getValueMin() {
+    public Float getValueMin() {
         return valueMin;
     }
 
-    public void setValueMin(float valueMin) {
+    public void setValueMin(Float valueMin) {
         this.valueMin = valueMin;
     }
 
-    public float getValueMax() {
+    public Float getValueMax() {
         return valueMax;
     }
 
-    public void setValueMax(float valueMax) {
+    public void setValueMax(Float valueMax) {
         this.valueMax = valueMax;
     }
 }

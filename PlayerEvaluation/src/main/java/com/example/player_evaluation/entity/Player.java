@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "player")
 public class Player {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer playerId;
@@ -18,6 +19,7 @@ public class Player {
     private Indexer indexer;
 
     // Getters and setters
+
     public Integer getPlayerId() {
         return playerId;
     }

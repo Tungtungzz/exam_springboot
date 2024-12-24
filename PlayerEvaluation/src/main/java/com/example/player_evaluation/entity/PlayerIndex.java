@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "player_index")
 public class PlayerIndex {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,9 +18,10 @@ public class PlayerIndex {
     @JoinColumn(name = "index_id")
     private Indexer indexer;
 
-    private float value;
+    private Float value;
 
     // Getters and setters
+
     public Integer getId() {
         return id;
     }
@@ -44,11 +46,11 @@ public class PlayerIndex {
         this.indexer = indexer;
     }
 
-    public float getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 }

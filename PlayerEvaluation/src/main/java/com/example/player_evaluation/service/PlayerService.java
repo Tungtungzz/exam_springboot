@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PlayerService {
+
     @Autowired
     private PlayerRepository playerRepository;
 
@@ -25,14 +26,21 @@ public class PlayerService {
                 .collect(Collectors.toList());
     }
 
+    public PlayerRes getPlayerById(Integer id) {
+        Player player = playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Player not found"));
+        return playerMapper.toRes(player);
+    }
+
     public PlayerRes createPlayer(PlayerReq req) {
+        validatePlayerReq(req);
         Player player = playerMapper.toEntity(req);
         Player savedPlayer = playerRepository.save(player);
         return playerMapper.toRes(savedPlayer);
     }
 
     public PlayerRes updatePlayer(Integer id, PlayerReq req) {
-        Player player = playerRepository.findById(id).orElseThrow();
+        validatePlayerReq(req);
+        Player player = playerRepository.findById(id).orElseThrow(() -> new RuntimeException("Player not found"));
         player.setName(req.getName());
         player.setFullName(req.getFullName());
         player.setAge(req.getAge());
@@ -42,5 +50,20 @@ public class PlayerService {
 
     public void deletePlayer(Integer id) {
         playerRepository.deleteById(id);
+    }
+
+    private void validatePlayerReq(PlayerReq req) {
+        if (req.getName() == null || req.getName().isEmpty()) {
+            throw new RuntimeException("Name is required");
+        }
+        if (req.getFullName() == null || req.getFullName().isEmpty()) {
+            throw new RuntimeException("Full Name is required");
+        }
+        if (req.getAge() == null || req.getAge().isEmpty()) {
+            throw new RuntimeException("Age is required");
+        }
+        if (req.getIndexId() == null) {
+            throw new RuntimeException("Indexer is required");
+        }
     }
 }
